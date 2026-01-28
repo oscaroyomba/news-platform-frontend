@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
+/* Guardian-style tokens (LIGHT ONLY for now) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f6f6; /* page */
+  --surface: #f6f6f6; /* sections */
+  --foreground: #0b0c0c; /* black text */
+  --muted: #5a5a5a;
+  --border: #d9d9d9;
+
+  --brand: #052962; /* navy */
+  --accent: #ffdd00; /* yellow */
+
+  /* ✅ Article typography accents */
+  --article-brown: #7a2e1f; /* warm brown */
 }
 
+/* Tailwind v4 theme mapping */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Force light look */
+html,
+body {
+  background: var(--surface);
+  color: var(--foreground);
 }
 
 body {
-  background: var(--background);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Prevent “random colored links” */
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* -----------------------------
+   ✅ Article typography styling
+   ----------------------------- */
+
+/* ✅ CHANGE #1: set a REAL content width + center it */
+.article-body {
+  font-size: 18px;
+  line-height: 1.75;
+  max-width: 72ch; /* nicer reading width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ✅ CHANGE #2: style markdown-like "##" headings that we render as .article-subhead */
+.article-subhead {
+  font-family: var(--font-serif);
+  color: var(--article-brown);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  margin-top: 28px;
+  margin-bottom: 10px;
+  font-size: 26px;
+}
+
+/* ✅ CHANGE #3: prevent "prose" from overriding heading colors/weights */
+.article-body :where(h2) {
+  font-family: var(--font-serif);
+  color: var(--article-brown) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.01em;
+  margin-top: 28px;
+  margin-bottom: 10px;
+  font-size: 26px;
+}
+
+/* ✅ CHANGE #4: big title inside article body (if Strapi sends # headings later) */
+.article-body :where(h1) {
+  font-family: var(--font-serif);
+  color: var(--foreground) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em;
+  margin: 10px 0 14px;
+  font-size: 34px;
+}
+
+/* Paragraph spacing */
+.article-body p {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+/* ✅ CHANGE #5: drop cap only for the first real paragraph */
+.article-body p:first-of-type:not(.article-subhead):not(:has(strong))::first-letter {
+  float: left;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  color: var(--article-brown);
+  font-size: 64px;
+  line-height: 0.9;
+  padding-right: 10px;
+  padding-top: 6px;
+}
+
+/* Nice block separators if you add --- lines or similar */
+.article-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
+
+/* Quotes */
+.article-body blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 14px;
+  color: var(--muted);
+  font-style: italic;
+  margin: 18px 0;
+}
+
+/* Lists */
+.article-body ul,
+.article-body ol {
+  padding-left: 20px;
+  margin: 14px 0;
+}
+
+.article-body li {
+  margin: 6px 0;
+}
+
+/* Better link style inside article body */
+.article-body a {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+/* -----------------------------
+   ✅ Yellow highlight styling
+   ----------------------------- */
+
+/* ✅ Primary: if Strapi outputs <mark> for highlights */
+.article-body mark {
+  background: var(--accent);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  padding: 0.05em 0.2em;
+  border-radius: 4px;
+}
+
+/* ✅ Optional: if you later output <span class="highlight">...</span> */
+.article-body .highlight {
+  background: var(--accent);
+  color: var(--foreground);
+  padding: 0.05em 0.2em;
+  border-radius: 4px;
+}
+
+/* ✅ Optional: attribute hook if your blocks output data-highlight */
+.article-body [data-highlight="true"] {
+  background: var(--accent);
+  color: var(--foreground);
+  padding: 0.05em 0.2em;
+  border-radius: 4px;
 }

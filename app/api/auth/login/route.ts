@@ -38,10 +38,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "No jwt returned" }, { status: 500 });
   }
 
-  cookies().set("strapi_jwt", jwt, {
+  // FIXED: Use the new cookies() API for Next.js 16+
+  const cookieStore = await cookies();
+  cookieStore.set("strapi_jwt", jwt, {
     httpOnly: true,
     sameSite: "lax",
-    secure: false, // set true when you go https
+    secure: process.env.NODE_ENV === "production", // Auto-set based on environment
     path: "/",
     maxAge: 60 * 60 * 24 * 7, // 7 days
   });

@@ -368,7 +368,6 @@ export default async function CategoryDetailPage({
                       coverUrl={a.coverUrl}
                       publishedAt={a.publishedAt}
                       // REMOVED: category prop
-                      author={null}
                     />
                   ))}
                 </div>
@@ -384,7 +383,6 @@ export default async function CategoryDetailPage({
                       coverUrl={a.coverUrl}
                       publishedAt={a.publishedAt}
                       // REMOVED: category prop
-                      author={null}
                     />
                   ))}
                 </div>
@@ -400,7 +398,6 @@ export default async function CategoryDetailPage({
                         excerpt={a.excerpt}
                         publishedAt={a.publishedAt}
                         // REMOVED: category prop
-                        author={null}
                       />
                     ))}
                   </div>

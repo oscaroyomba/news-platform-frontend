@@ -367,11 +367,7 @@ export default async function CategoryDetailPage({
                       excerpt={a.excerpt}
                       coverUrl={a.coverUrl}
                       publishedAt={a.publishedAt}
-                      category={
-                        safeCategory.slug
-                          ? { name: safeCategory.name ?? "Category", slug }
-                          : null
-                      }
+                      // REMOVED: category prop
                       author={null}
                     />
                   ))}
@@ -387,11 +383,7 @@ export default async function CategoryDetailPage({
                       excerpt={a.excerpt}
                       coverUrl={a.coverUrl}
                       publishedAt={a.publishedAt}
-                      category={
-                        safeCategory.slug
-                          ? { name: safeCategory.name ?? "Category", slug }
-                          : null
-                      }
+                      // REMOVED: category prop
                       author={null}
                     />
                   ))}
@@ -407,11 +399,7 @@ export default async function CategoryDetailPage({
                         title={a.title}
                         excerpt={a.excerpt}
                         publishedAt={a.publishedAt}
-                        category={
-                          safeCategory.slug
-                            ? { name: safeCategory.name ?? "Category", slug }
-                            : null
-                        }
+                        // REMOVED: category prop
                         author={null}
                       />
                     ))}

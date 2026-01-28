@@ -396,7 +396,7 @@ export default async function HomePage({
 
           <p className="mt-3 text-sm text-[var(--muted)]">
             {q.trim()
-              ? `Showing results for “${q.trim()}” — ${pagination.total} found`
+              ? `Showing results for "${q.trim()}" — ${pagination.total} found`
               : `Total articles: ${pagination.total}`}
           </p>
         </header>
@@ -412,19 +412,12 @@ export default async function HomePage({
                 excerpt={hero.excerpt}
                 coverUrl={hero.coverUrl}
                 publishedAt={hero.publishedAt}
-                kicker={null}
-                category={
-                  hero.category?.slug ? { name: hero.category.name, slug: hero.category.slug } : null
-                }
-                author={
-                  hero.author?.slug ? { name: hero.author.name, slug: hero.author.slug } : null
-                }
               />
             ) : (
               <section className="rounded-2xl border border-[var(--border)] bg-white p-6 shadow-sm">
                 <p className="font-semibold">No articles found.</p>
                 <p className="mt-2 text-sm text-[var(--muted)]">
-                  Publish articles in Strapi and ensure Public role has “find”.
+                  Publish articles in Strapi and ensure Public role has "find".
                 </p>
               </section>
             )}
@@ -441,8 +434,6 @@ export default async function HomePage({
                       excerpt={a.excerpt}
                       coverUrl={a.coverUrl}
                       publishedAt={a.publishedAt}
-                      category={a.category?.slug ? { name: a.category.name, slug: a.category.slug } : null}
-                      author={a.author?.slug ? { name: a.author.name, slug: a.author.slug } : null}
                     />
                   ))}
                 </div>
@@ -457,8 +448,6 @@ export default async function HomePage({
                       excerpt={a.excerpt}
                       coverUrl={a.coverUrl}
                       publishedAt={a.publishedAt}
-                      category={a.category?.slug ? { name: a.category.name, slug: a.category.slug } : null}
-                      author={a.author?.slug ? { name: a.author.name, slug: a.author.slug } : null}
                     />
                   ))}
                 </div>
@@ -473,8 +462,6 @@ export default async function HomePage({
                         title={a.title}
                         excerpt={a.excerpt}
                         publishedAt={a.publishedAt}
-                        category={a.category?.slug ? { name: a.category.name, slug: a.category.slug } : null}
-                        author={a.author?.slug ? { name: a.author.name, slug: a.author.slug } : null}
                       />
                     ))}
                   </div>
